@@ -19,10 +19,13 @@ def HelloWorld():
     output = ''
     for i in items:
         output += i.name
-        output += '<br>'
+        output += '</br>'
+        output += i.price
+        output += '</br>'
+        output += i.description
     return output
 
 if __name__ == '__main__':
     app.debug = True
     app.run()
-    #if vagant use app.run(host = '0.0.0.0', port = 5000)
+    #if vagrant use: app.run(host = '0.0.0.0', port = 5000)
