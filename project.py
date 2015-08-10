@@ -23,6 +23,8 @@ def HelloWorld():
         output += i.price
         output += '</br>'
         output += i.description
+        output += '</br>'
+        output += '</br>'
     return output
 
 if __name__ == '__main__':
