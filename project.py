@@ -20,7 +20,7 @@ def HelloWorld():
     for i in items:
         output += i.name
         output += '<br>'
-    resturn output
+    return output
 
 if __name__ == '__main__':
     app.debug = True
