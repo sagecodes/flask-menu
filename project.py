@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
 from database_setup import Base, Restaurant, MenuItem
@@ -19,9 +18,18 @@ def restaurantMenu(restaurant_id):
     items = session.query(MenuItem).filter_by(restaurant_id = restaurant.id)
     return render_template("menu.html", restaurant=restaurant, items = items)
 
-@app.route('/restaurants/<int:restaurant_id>/new/')
+@app.route('/restaurants/<int:restaurant_id>/new/', methods=['GET', 'POST'])
 def newMenuItem(restaurant_id):
-    return "page to create a new menu item. Task 1 complete!"
+    if request.method == 'POST':
+        newItem = MenuItem(name = request.form['name'],restaurant_id =
+            restaurant_id)
+        session.add(newItem)
+        session.commit()
+        return redirect(url_for('restaurantMenu', restaurant_id =
+            restaurant_id))
+    else:
+        return render_template('newmenuitem.html', restaurant_id =
+            restaurant_id)
 
 # Task 2: Create route for editMenuItem function here
 
